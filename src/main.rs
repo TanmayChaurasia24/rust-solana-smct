@@ -65,11 +65,16 @@ fn ownership_example() {
     // example for transfering onwer ship and returning many things from function
     let name: String = String::from("tanmay");
     // let (s2,length) = cal_length(name); // this is transfering the ownership of the name
-    let length: usize = cal_length(name.clone()); // we are not transfering the ownership of name, instead we are just passing the clone of name, so that we are also access name
+
+    // clone method is used for deep copy of the heap data. it is an expensive method
+    // let length: usize = cal_length(name.clone()); // we are not transfering the ownership of name, instead we are just passing the clone of name, so that we are also access name
+
+    //-----------borrowing---------------
+    let length: usize = cal_length(&name);
     println!("the length of {} is {}",name,length);
 }
 
-fn cal_length(s: String) -> usize{
+fn cal_length(s: &String) -> usize{
     let length: usize = s.len();
     return length;
 }
