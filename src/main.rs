@@ -38,7 +38,31 @@ fn main() {
     let result: i32 = add(10, 20);
     println!("result is: {}", result);
 
-    ownership_example();
+    // ownership_example();
+    // reference_and_derefrence();
+    arrays_example();
+}
+
+fn arrays_example() {
+    // let arr: [&str;3] = ["hello","world","chase"];
+    // write_arr(arr); // when we have passed arr directly then arr1 is thw new copy of arr thats why after changes to arr1 arr is still same
+    let mut arr: [&str;3] = ["hello","world","chase"];
+    write_arr(&mut arr); // passing the reference of arr now changes to arr1 will be shown to arr also
+    println!("arr = {:?}", arr);
+}
+
+fn write_arr(arr1:&mut [&str;3]) {
+    arr1[0] = "fellow";
+    println!("arr1 = {:?}", arr1)
+}
+
+fn reference_and_derefrence() {
+    let mut x: i8 = 5;
+    x = x+1; //6
+    let y: &mut i8 = &mut x; // y is the reference to the value of x, y is storing the address of x *y will access the value of x.
+    *y += 1; //7 ------ derefrencing 
+    println!("x = {}", y);
+
 }
 
 fn add(a: i32, b: i32) -> i32 {
